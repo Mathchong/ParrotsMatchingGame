@@ -29,7 +29,37 @@
         <div class="cards-container">
 
             <div class='card'
-                onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'))">
+                onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'),this)">
+                <div class="look-front face">
+                    <img src="/media/front.png" alt="">
+                </div>
+                <div class="look-back face">
+                    <img src='/media/metalparrot.gif' alt="">
+                </div>
+            </div>
+
+            <div class='card'
+                onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'),this)">
+                <div class="look-front face">
+                    <img src="/media/front.png" alt="">
+                </div>
+                <div class="look-back face">
+                    <img src='/media/metalparrot.gif' alt="">
+                </div>
+            </div>
+
+            <div class='card'
+                onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'),this)">
+                <div class="look-front face">
+                    <img src="/media/front.png" alt="">
+                </div>
+                <div class="look-back face">
+                    <img src='/media/metalparrot.gif' alt="">
+                </div>
+            </div>
+
+            <div class='card'
+                onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'),this)">
                 <div class="look-front face">
                     <img src="/media/front.png" alt="">
                 </div>
@@ -40,6 +70,7 @@
 
         </div>
 
+        <div class="click-permit"></div>
     </main>
 
 

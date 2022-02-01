@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     background-color: #EEF9BF;
@@ -69,5 +73,31 @@ main{
     justify-content: space-evenly;
     flex-wrap: wrap;
     width: 85vw;
+}
+
+.click-block{
+    z-index: 5;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: none;
+}
+
+.click-permit{
+    z-index: -5;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: none;
+}
+
+.pair-made{
+    border-radius: 9px;
+    border: 2px solid green;
+
 }
 

@@ -1,11 +1,20 @@
 let gifList=[
-['bobrossparrot.gif', 2],
-['explodyparrot.gif', 2],
-['fiestaparrot.gif', 2],
-['metalparrot.gif', 2],
-['revertitparrot.gif', 2],
-['tripletsparrot.gif', 2],
-['unicornparrot.gif', 2]]
+    'bobrossparrot.gif',
+    'bobrossparrot.gif',
+    'explodyparrot.gif',
+    'explodyparrot.gif',
+    'fiestaparrot.gif',
+    'fiestaparrot.gif',
+    'metalparrot.gif',
+    'metalparrot.gif',
+    'revertitparrot.gif',
+    'revertitparrot.gif',
+    'tripletsparrot.gif',
+    'tripletsparrot.gif',
+    'unicornparrot.gif',
+    'unicornparrot.gif',]
+
+let list2 = gifList
 
 const cardModel =
 `<div class='card' onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'))">
@@ -20,12 +29,15 @@ const cardModel =
 </div>`
 
 function cardNumber(){
+    
     let number = prompt('Enter card number');
     let main = document.querySelector('.all-cards');
     let htmlText=''
     let auxCard=''
+    let shuffledGifs=copyAndSortGifList(number)
+
     for (let i=0; i<number; i++){
-        auxCard= cardModel.replace('gif', gifList[i][0] );
+        auxCard= cardModel.replace('gif', shuffledGifs[i] );
         htmlText+=auxCard;
         console.log(auxCard)
     }
@@ -51,4 +63,14 @@ setTimeout(function(){
     back.classList.remove("look-front")
     back.classList.add("look-back")
 },1000)
+}
+
+function copyAndSortGifList(itens){
+    let copy =[]
+    for (let i = 0; i < itens; i++) {
+        copy[i] = gifList[i];
+    }
+    copy = copy.sort(() => Math.random() - 0.5)
+
+    return copy;
 }

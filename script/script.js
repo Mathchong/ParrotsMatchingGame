@@ -16,6 +16,9 @@ let gifList = [
 
 let moves = 0;
 let turnedCards = 0;
+let matchedCards = 0;
+let cardsInGame = -1;
+let time=0;
 
 
 const cardModel =
@@ -38,17 +41,18 @@ function cardNumber() {
 
 
     while (loop) {
-        number = prompt('Enter card number');
+        number = prompt('How many cards would you like to play with? (4-14)');
         if (regex1Digit.test(number) || regex2Digit.test(number)) {
             if ((number % 2) == 0) {
                 if (number <= 14 && number >= 2) {
+                    cardsInGame=number;
                     loop = false;
                 }
             } else {
-                alert("Os números devem ser pares!")
+                alert("Numbers must be even!")
             }
         } else {
-            alert("Entre somente com números!")
+            alert("Numbers must be between 4 and 14!")
         }
     }
 
@@ -72,6 +76,7 @@ function flipCard(front, back, cardElement) {
     if (cardElement.classList.contains("selected") || cardElement.classList.contains("pair-made")) {
         return;
     }
+    moves += 1;6
     cardElement.classList.add("selected")
     turnedCards += 1;
     console.log(turnedCards)
@@ -104,6 +109,10 @@ function flipCard(front, back, cardElement) {
             card1.classList.remove("selected")
             card2.classList.remove("selected")
 
+            matchedCards +=2;
+
+            verifyVictory();
+
             return;
         }
 
@@ -118,7 +127,6 @@ function flipCard(front, back, cardElement) {
         }, 1000)
 
     }
-    moves += 1;
 }
 
 function copyAndSortGifList(itens) {
@@ -154,4 +162,19 @@ function unflipCard() {
 
 }
 
+function verifyVictory(){
+    if(matchedCards==cardsInGame){
+        setTimeout(function(){
+            alert(`Well Done! You have won the game in ${moves} moves`)
+            let answer = prompt(`Would you like to play again? Tipe 'y' if so.`)
+            if(answer=='y'|| answer=='Y'){
+                cardNumber()
+            }
+        },300)
+
+    }
+    
+}
+
 cardNumber()
+

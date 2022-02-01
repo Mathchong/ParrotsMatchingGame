@@ -26,9 +26,12 @@
 
     <main class="all-cards">
 
-        <div class="card" onclick="rotaciona()">
-            <div class="front-face face">
-                <img src="/media/fiestaparrot.gif" alt="">
+        <div class='card cardID' onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'))">
+            <div class="look-front face">
+                <img src="/media/front.png" alt="">
+            </div>
+            <div class="look-back face">
+                <img src='/media/metalparrot.gif' alt="">
             </div>
         </div>
 

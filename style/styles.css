@@ -42,7 +42,16 @@ header h1{
     
 }
 
-.back-face {
+.look-back {
     transform: rotateY(180deg);
   }
+
+.lock-front {
+    transform: rotateY(0deg);
+}
+
+.face img{
+    height: 100px;
+    width: 100px;
+}
 

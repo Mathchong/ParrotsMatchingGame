@@ -25,6 +25,7 @@ header h1{
     width: 117px;
     height: 150px;
     position: relative;
+    margin: 15px;
 }
 
 .face{
@@ -53,5 +54,20 @@ header h1{
 .face img{
     height: 100px;
     width: 100px;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cards-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 85vw;
 }
 

@@ -31,7 +31,7 @@ const cardModel =
 function cardNumber(){
     
     let number = prompt('Enter card number');
-    let main = document.querySelector('.all-cards');
+    let main = document.querySelector('.cards-container');
     let htmlText=''
     let auxCard=''
     let shuffledGifs=copyAndSortGifList(number)

@@ -14,7 +14,7 @@ let gifList=[
     'unicornparrot.gif',
     'unicornparrot.gif',]
 
-let list2 = gifList
+let moves=0;
 
 const cardModel =
 `<div class='card' onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'))">
@@ -29,8 +29,25 @@ const cardModel =
 </div>`
 
 function cardNumber(){
+    let number
+    let loop=true
+    let regex1Digit=/^\d{1}$/
+    let regex2Digit=/^\d{2}$/
+
+
+    while(loop){
+        number = prompt('Enter card number');
+        if(regex1Digit.test(number) || regex2Digit.test(number)){
+            if((number%2)==0){
+                loop = false;
+            }else{
+                alert("Os números devem ser pares!")
+            }
+        } else {
+            alert("Entre somente com números!")
+        }
+    }
     
-    let number = prompt('Enter card number');
     let main = document.querySelector('.cards-container');
     let htmlText=''
     let auxCard=''
@@ -63,6 +80,8 @@ setTimeout(function(){
     back.classList.remove("look-front")
     back.classList.add("look-back")
 },1000)
+
+moves +=1;
 }
 
 function copyAndSortGifList(itens){

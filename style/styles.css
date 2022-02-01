@@ -1,0 +1,48 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #EEF9BF;
+}
+
+header{
+    font-weight: 700;
+    font-size: 56px;
+    color: #75B79E;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 150px;
+}
+
+header h1{
+    margin-top: 40px;
+    height: 150px;
+    text-align: center;
+}
+
+.card{
+    width: 117px;
+    height: 150px;
+    position: relative;
+}
+
+.face{
+    width: 100%;
+    height: 100%;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    
+}
+
+.back-face {
+    transform: rotateY(180deg);
+  }
+

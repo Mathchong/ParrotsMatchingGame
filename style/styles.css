@@ -74,8 +74,7 @@ main{
     flex-wrap: wrap;
     width: 85vw; } 
 
-.click-block{
-    z-index: 5;
+.clickBarrier{
     position: fixed;
     top: 0px;
     bottom: 0px;
@@ -83,16 +82,12 @@ main{
     right: 0px;
     background-color: none; }
 
+.click-block{
+    z-index: 1; }
+
 .click-permit{
-    z-index: -5;
-    position: fixed;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: none; }
+    z-index: -1; }
 
 .pair-made{
     border-radius: 9px;
     border: 2px solid green; }
-

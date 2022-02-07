@@ -12,121 +12,89 @@ let gifList = [
     'tripletsparrot.gif',
     'tripletsparrot.gif',
     'unicornparrot.gif',
-    'unicornparrot.gif',]
+    'unicornparrot.gif',]  
 
 let moves = 0;
 let turnedCards = 0;
 let matchedCards = 0;
 let cardsInGame = -1;
-let time=0;
-
+let clickBarrier = document.querySelector(".clickBarrier")
 
 const cardModel =
-    `<div class='card' onclick="flipCard(this.querySelector('.look-front'),this.querySelector('.look-back'),this)">
-
-    <div class='look-front face'>
+`<div class='card' data-identifier="card" onclick="gameMove(this)">
+    <div class='look-front face' data-identifier="back-face">
         <img src='/media/front.png' alt=''>
     </div>
-
-    <div class='look-back face'>
+    <div class='look-back face' data-identifier="front-face">
         <img src='/media/gif' alt=''>
     </div>
 </div>`
 
-function cardNumber() {
-    let number
-    let loop = true
-    let regex1Digit = /^\d{1}$/
-    let regex2Digit = /^\d{2}$/
-
+function gameStart() {
+    moves = 0;
+    turnedCards = 0;
+    matchedCards = 0;
+    let number = "";
+    let loop = true;
+    let onlyDigit = /^\d{1,}$/;
 
     while (loop) {
         number = prompt('How many cards would you like to play with? (4-14)');
-        if (regex1Digit.test(number) || regex2Digit.test(number)) {
+        if (onlyDigit.test(number)) {
             if ((number % 2) == 0) {
-                if (number <= 14 && number >= 2) {
-                    cardsInGame=number;
+                if ( number >= 2 && number <= 14) {
+                    cardsInGame = number;
                     loop = false;
-                }
-            } else {
-                alert("Numbers must be even!")
-            }
-        } else {
-            alert("Numbers must be between 4 and 14!")
-        }
+                } else alert("Numbers must be between 2 and 14!")
+            } else alert("Numbers must be even!")
+        } else  alert("Please enter only with numbers!")
     }
 
-    let main = document.querySelector('.cards-container');
-    let htmlText = ''
-    let auxCard = ''
-    let shuffledGifs = copyAndSortGifList(number)
+    let cardContainer = document.querySelector('.cards-container');
+    cardContainer.innerHTML="";
 
-    for (let i = 0; i < number; i++) {
-        auxCard = cardModel.replace('gif', shuffledGifs[i]);
-        htmlText += auxCard;
-        console.log(auxCard)
+    let shuffledGifs = copyAndSortGifList(cardsInGame);
+
+    for (let i = 0; i < cardsInGame; i++) {
+        cardContainer.innerHTML += cardModel.replace('gif', shuffledGifs[i]);
     }
-
-    main.innerHTML = htmlText;
 }
 
+function gameMove(clickedCard) {
 
-function flipCard(front, back, cardElement) {
+    if (clickedCard.classList.contains("selected") || clickedCard.classList.contains("pair-made")) return;
+    moves += 1;
+    turnedCards += 1;
+    clickedCard.classList.add("selected")
+    flipCard(clickedCard)
+    
+    if (turnedCards !== 2) return;
+    clickBarrierToggle()
+    let allSelected = document.querySelectorAll(".selected")
+    let card1 = allSelected[0]
+    let card2 = allSelected[1]
 
-    if (cardElement.classList.contains("selected") || cardElement.classList.contains("pair-made")) {
+    if (card1.innerHTML == card2.innerHTML) {
+        turnedCards = 0
+        matchedCards += 2;
+
+        card1.classList.add("pair-made")
+        card2.classList.add("pair-made")
+        card1.classList.remove("selected")
+        card2.classList.remove("selected")
+        verifyVictory();
+        clickBarrierToggle()
         return;
     }
-    moves += 1;6
-    cardElement.classList.add("selected")
-    turnedCards += 1;
-    console.log(turnedCards)
+    turnedCards = 0
 
-    front.classList.remove("look-front")
-    front.classList.add("look-back")
-
-    back.classList.remove("look-back")
-    back.classList.add("look-front")
-
-    if (turnedCards == 2) {
-        let click = document.querySelector(".click-permit")
-        click.classList.toggle("click-permit")
-        click.classList.toggle("click-block")
-
-        let allSelectet = document.querySelectorAll(".selected")
-
-        let card1 = allSelectet[0]
-        let card2 = allSelectet[1]
-
-        if (card1.innerHTML == card2.innerHTML) {
-            card1.classList.add("pair-made")
-            card2.classList.add("pair-made")
-
-            turnedCards = 0
-
-            click.classList.toggle("click-permit")
-            click.classList.toggle("click-block")
-
-            card1.classList.remove("selected")
-            card2.classList.remove("selected")
-
-            matchedCards +=2;
-
-            verifyVictory();
-
-            return;
-        }
-
-        turnedCards = 0
-
-        unflipCard()
-        unflipCard()
-
-        setTimeout(function () {
-            click.classList.toggle("click-permit")
-            click.classList.toggle("click-block")
-        }, 1000)
-
-    }
+    card1.classList.remove("selected")
+    card2.classList.remove("selected")
+    setTimeout( function(){
+    flipCard(card1)
+    flipCard(card2)
+    clickBarrierToggle()
+    },1000)
 }
 
 function copyAndSortGifList(itens) {
@@ -135,46 +103,34 @@ function copyAndSortGifList(itens) {
         copy[i] = gifList[i];
     }
     copy = copy.sort(() => Math.random() - 0.5)
-
     return copy;
 }
 
+function verifyVictory() {
+    if (matchedCards != cardsInGame) return;
 
-/*
-setTimeout(function(){
-    cardNumber()
-},1000)
-*/
-
-function unflipCard() {
-    let cardFront = document.querySelector(".selected > .look-front")
-    let cardBack = document.querySelector(".selected > .look-back")
-    let card = document.querySelector(".selected")
-    card.classList.remove("selected")
-    setTimeout(function () {
-        cardFront.classList.remove("look-front")
-        cardFront.classList.add("look-back")
-
-        cardBack.classList.remove("look-back")
-        cardBack.classList.add("look-front")
-    }, 1000)
-
-
+    setTimeout( function() {
+        alert(`Well Done! You have won the game in ${moves} moves`)
+        let answer = prompt(`Would you like to play again? Tipe 'y' if so.`)
+        if (answer == 'y' || answer == 'Y') {
+            gameStart()
+        }
+    }, 300)
 }
 
-function verifyVictory(){
-    if(matchedCards==cardsInGame){
-        setTimeout(function(){
-            alert(`Well Done! You have won the game in ${moves} moves`)
-            let answer = prompt(`Would you like to play again? Tipe 'y' if so.`)
-            if(answer=='y'|| answer=='Y'){
-                cardNumber()
-            }
-        },300)
+function flipCard(card){
+    let front = card.querySelector(".look-front")
+    let back = card.querySelector(".look-back")
 
-    }
-    
+    front.classList.remove("look-front")
+    front.classList.add("look-back")
+    back.classList.remove("look-back")
+    back.classList.add("look-front")
 }
 
-cardNumber()
+function clickBarrierToggle(){
+    clickBarrier.classList.toggle("click-permit")
+    clickBarrier.classList.toggle("click-block")
+}
 
+gameStart()

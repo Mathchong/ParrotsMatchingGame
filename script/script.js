@@ -23,10 +23,10 @@ let clickBarrier = document.querySelector(".clickBarrier")
 const cardModel =
 `<div class='card' data-identifier="card" onclick="gameMove(this)">
     <div class='look-front face' data-identifier="back-face">
-        <img src='/media/front.png' alt=''>
+        <img src='./media/front.png' alt=''>
     </div>
     <div class='look-back face' data-identifier="front-face">
-        <img src='/media/gif' alt=''>
+        <img src='./media/gif' alt=''>
     </div>
 </div>`
 

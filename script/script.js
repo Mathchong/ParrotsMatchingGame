@@ -23,10 +23,10 @@ let clickBarrier = document.querySelector(".clickBarrier")
 const cardModel =
 `<div class='card' data-identifier="card" onclick="gameMove(this)">
     <div class='look-front face' data-identifier="back-face">
-        <img src='./media/front.png' alt=''>
+        <img src="./media/front.png" alt=''>
     </div>
     <div class='look-back face' data-identifier="front-face">
-        <img src='./media/gif' alt=''>
+        <img src="./media/gif" alt=''>
     </div>
 </div>`
 
@@ -42,10 +42,10 @@ function gameStart() {
         number = prompt('How many cards would you like to play with? (4-14)');
         if (onlyDigit.test(number)) {
             if ((number % 2) == 0) {
-                if ( number >= 2 && number <= 14) {
+                if ( number >= 4 && number <= 14) {
                     cardsInGame = number;
                     loop = false;
-                } else alert("Numbers must be between 2 and 14!")
+                } else alert("Numbers must be between 4 and 14!")
             } else alert("Numbers must be even!")
         } else  alert("Please enter only with numbers!")
     }

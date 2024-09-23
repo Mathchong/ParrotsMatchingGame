@@ -1,6 +1,6 @@
 # Parrot Card Game
 
-Este repositório contém o código do **Parrot Card Game**, um jogo de memória onde o objetivo é encontrar pares de cartas com imagens de papagaios animados. Este foi um dos primeiros projetos desenvolvidos utilizando **HTML**, **CSS** e **JavaScript**, e faz parte do meu aprendizado no curso da **Driven Education**.
+Este repositório contém o código do **Parrot Card Game**, um jogo de memória onde o objetivo é encontrar pares de cartas com imagens de papagaios animados. Este foi um dos primeiros projetos desenvolvidos utilizando **HTML**, **CSS** e **JavaScript**, e faz parte do meu aprendizado no curso da **Driven Education**, foi meu primeiro contato com Javascript.
 
 ## Índice
 
@@ -28,13 +28,15 @@ O **Parrot Card Game** é um jogo de memória simples, onde o jogador deve escol
    git clone https://github.com/seu-usuario/parrot-card-game.git
    ```
 2. Navegue até a pasta do projeto:
- ```bash
-   cd parrot-card-game
-   ```
+
+```bash
+  cd parrot-card-game
+```
 
 3. Abra o arquivo index.html no navegador.
 
 ##Tecnologias Utilizadas:
+
 - HTML5: Estruturação do layout da página.
 - CSS3: Estilização do jogo, incluindo o reset e o estilo das cartas.
 - JavaScript: Lógica do jogo, manipulação de DOM e interação do usuário.
